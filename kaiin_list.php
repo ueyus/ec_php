@@ -7,13 +7,15 @@
 <body>
 <?php
 		try {
-			$dsn = 'mysql:dbname=ec_db_php;host=localhost;';
-			$user = 'test';
-			$password = '';
+			$dsn = 'mysql:dbname=ec_test_php;host=localhost;';
+			$user = 'an';
+			$password = 'password';
 			$db = new PDO($dsn, $user, $password);
+			$db->query('set names utf8');
 
-			$sql = 'select code, name from kaiin_masta whrere 1';
-			$stmt = $db->query($sql);
+			$sql = 'select code, name from mst_tbl';
+			$stmt = $db->prepare($sql);
+
 			$stmt->execute();
 
 			$db = null;
@@ -36,6 +38,7 @@
 
 		} catch (Exception $e) {
 				print 'system error !!!';
+				print $e;
 				exit();
 		} 
 ?>

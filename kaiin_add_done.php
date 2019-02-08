@@ -9,22 +9,24 @@
 <?php
 		try {
 			$kaiin_name = $_POST['name'];
-			$kaiin_pass = $_POST['password1'];
+			$kaiin_pass = $_POST['password'];
 			
 			/*
 				$kaiin_name = htmlspecialchars($kaiin_name);
 				$kaiin_pass = htmlspecialchars($kaiin_pass);
 			*/
 
-			$dsn = 'mysql:dbname=ec_db_php;host=localhost;';
-			$user = 'test';
-			$password = '';
+			$dsn = 'mysql:dbname=ec_test_php;host=localhost;';
+			$user = 'an';
+			$password = 'password';
 			$db = new PDO($dsn, $user, $password);
-			$db->query('SET NAMES utf8');
-			$sql = 'insert into kaiin_masta(name, password) values(?, ?)';
+			$db->query('set names utf8');
+
+			$sql = 'insert into mst_tbl(name, password) values(?, ?)';
 			$stmt = $db->prepare($sql);
-			$data[] = $kaiin_name;
-			$data[] = $kaiin_pass;
+			$data = [$kaiin_name, $kaiin_pass];
+		var_dump($data);
+		var_dump($_POST);
 			$stmt->execute($data);
 
 			$db = null;
