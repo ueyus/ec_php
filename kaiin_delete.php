@@ -34,17 +34,15 @@
 				exit();
 		} 
 ?>
-		スタッフ修正<br>
-		スタッフコード：<br><?php print $kaiin_code ?><br>
-		<form action="kaiin_edit_check.php" method="post">
-				名前：<br>
-				<input type="text" name="name" value="<?php print $kaiin_name; ?>"><br>
-				パスワード：<br>	
-				<input type="password" name="password1">
-				パスワード確認用：<br>
-				<input type="password" name="password2">
-				<input type="button" onclick="history.back()" value="戻る">
-				<input type="submit" value="送信">
+		スタッフ削除<br>
+		スタッフコード：<br><?php print $kaiin_code; ?><br>
+		スタッフ名：<br><?php print $kaiin_name; ?><br>
+		このスタッフを削除してもよろしいですか？<br>
+		<form action="kaiin_delete_done.php" method="post">
+			<input type="hidden" name="code" value="<?php print $kaiin_code; ?>">
+			<input type="hidden" name="name" value="<?php print $kaiin_name; ?>">
+			<input type="button" onclick="history.back()" value="戻る">
+			<input type="submit" value="OK">
 		</form>
 
 </body>

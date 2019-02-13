@@ -21,7 +21,7 @@
 			$db = null;
 
 			print '会員一覧<br><br>';
-			print '<form action="kaiin_edit.php" method="post">';
+			print '<form action="kaiin_branch.php" method="post">';
 
 			while (true) {
 				$rec = $stmt->fetch(PDO::FETCH_ASSOC);
@@ -33,7 +33,10 @@
 				print '<br>';
 			}
 
-			print '<input type="submit" value="修正">';
+			print '<input type="submit" name="add" value="追加">';
+			print '<input type="submit" name="disp" value="参照">';
+			print '<input type="submit" name="edit" value="修正">';
+			print '<input type="submit" name="delete" value="削除">';
 			print '</form>';
 
 		} catch (Exception $e) {
