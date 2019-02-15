@@ -45,5 +45,7 @@
 				exit();
 		} 
 ?>
+
+<a href="../kaiin_top.php">トップ画面へ</a>
 </body>
 </html>
