@@ -7,37 +7,34 @@
 <body>
 
 <?php
+$pro_code = $_POST['code'];
 $pro_name = $_POST['name'];
 $pro_price = $_POST['price'];
-$pro_gazou = $_FILES['gazou'];
-var_dump($_FILES);
+
+$pro_code = htmlspecialchars($pro_code);
 $pro_name = htmlspecialchars($pro_name);
 $pro_price = htmlspecialchars($pro_price);
+//
 
 $ok_flag = true;
 
+if ($pro_code == '') {
+	print '商品コードが入力されていません<br>';
+	$ok_flag = false;
+} else {
+	print '商品コード：　' . $pro_code . '<br>';
+}
+
 if ($pro_name == '') {
-	print '商品名が入力されていません<br>';
+	print '名前が入力されていません<br>';
 	$ok_flag = false;
 } else {
 	print '商品名：　' . $pro_name . '<br>';
 }
 
-if (preg_match('/^\d+$/', $pro_price) == 0) {
-	print '価格が正しく入力されていません<br>';
+if ($pro_pass1 == '') {
+	print '価格が入力されていません<br>';
 	$ok_flag = false;
-} else {
-	print '価格：　' . $pro_price . '<br>';
-}
-
-if ($pro_gazou['size'] > 0) {
-	if ($pro_gazou['size'] > 1000000) {
-		print '画像が大きすぎます';
-	} else {
-		move_uploaded_file($pro_gazou['tmp_name'], './gazou/' . $pro_gazou['name']);
-		print '<img src="./gazou/"' . $pro_gazou['name'] . '">';
-		print '<br>';
-	}
 }
 
 if (!$ok_flag) {
@@ -45,10 +42,11 @@ if (!$ok_flag) {
 	print '<input type="button" onclick="history.back()" value="戻る">';
 	print '</form>';
 } else {
-	print '<form method="post" action="pro_add_done.php">';
+	$pro_pass = md5($pro_pass1);
+	print '<form method="post" action="pro_edit_done.php">';
+	print '<input type="hidden" name="code" value="' . $pro_code . '">';
 	print '<input type="hidden" name="name" value="' . $pro_name . '">';
 	print '<input type="hidden" name="price" value="' . $pro_price . '">';
-	print '<input type="hidden" name="gazou" value="' . $pro_gazou['name'] . '">';
 	print '<input type="button" onclick="history.back()" value="戻る">';
 	print '<input type="submit" value="OK">';
 	print '</form>';

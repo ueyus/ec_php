@@ -36,6 +36,7 @@ if (!$ok_flag) {
 	print '</form>';
 } else {
 	$kaiin_pass = md5($kaiin_pass1);
+var_dump($kaiin_pass);
 	print '<form method="post" action="kaiin_add_done.php">';
 	print '<input type="hidden" name="name" value="' . $kaiin_name . '">';
 	print '<input type="hidden" name="password" value="' . $kaiin_pass . '">';

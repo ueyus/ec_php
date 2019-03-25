@@ -8,11 +8,12 @@
 
 <?php
 		try {
+			$pro_code = $_POST['code'];
 			$pro_name = $_POST['name'];
 			$pro_price = $_POST['price'];
-			$pro_gazou = $_POST['gazou'];
 			
 			/*
+				$pro_code = htmlspecialchars($pro_code);
 				$pro_name = htmlspecialchars($pro_name);
 				$pro_pass = htmlspecialchars($pro_pass);
 			*/
@@ -23,16 +24,18 @@
 			$db = new PDO($dsn, $user, $password);
 			$db->query('set names utf8');
 
-			$sql = 'insert into mst_product(name, price, gazou) values(?, ?, ?)';
+			$sql = 'update mst_product set name=?, price=? where code=?';
 			$stmt = $db->prepare($sql);
-			$data = [$pro_name, $pro_price, $pro_gazou];
-		var_dump($data);
-		var_dump($_POST);
+			$data[] = $pro_name;
+			$data[] = $pro_price;
+			$data[] = $pro_code;
+var_dump($data);
+var_dump($sql);
 			$stmt->execute($data);
 
 			$db = null;
 
-			print $pro_name . 'を追加しました <br>';
+			print '更新しました <br>';
 
 		} catch (Exception $e) {
 			print 'system error!!';
@@ -40,6 +43,5 @@
 
 		}
 ?>
-<a href="./pro_list.php">戻る</a>
 </body>
 </html>
