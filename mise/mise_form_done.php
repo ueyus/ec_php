@@ -41,9 +41,9 @@ try {
 	$count = $_SESSION['count'];
 	$max = count($cart);
 
-	$dsn = 'mysql:dbname=shop;host=localhost';
-	$user = 'root';
-	$password = '';
+	$dsn = 'mysql:dbname=ec_test_php;host=localhost';
+	$user = 'an';
+	$password = 'password';
 	$dbh = new PDO($dsn, $user, $password);
 	$dbh->query('SET NAMES utf8');
 
@@ -84,8 +84,21 @@ try {
 	$honbun .= "\n";
 	$honbun .= "◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇\n";
 
+	/*
+	print '<br>';
+	print nl2br($honbun);
+	**/
+
+	$title = 'ご注文ありがとうございます。';
+	$header = 'From:info@';
+	$honbun = html_entity_decode($honbun, $ENT_QUOTES, 'UTF-8');
+	mb_language('Japanese');
+	mb_internal_encoding('UTF-8');
+	mb_send_mail($email, $title, $honbun, $header);
+
 
 } catch (Exception $e) {
+	print $e;
 	print 'ただいま障害によりご迷惑をおかけしています。';
 	exit();
 }
