@@ -24,7 +24,7 @@ if ($onamae == '') {
 	$ok_flg = false;
 }
 
-if (preg_match('/^[\.-\w]+@[\.-\w]+\.([a-z]+)$/', $email) == 0) {
+if (preg_match('/^[\.\-\w]+@[\.\-\w]+\.([a-z]+)$/', $email) == 0) {
 	print 'メールアドレスを正確に入力してください。<br><br>';
 	$ok_flg = false;
 }

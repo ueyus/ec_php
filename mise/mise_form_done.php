@@ -57,6 +57,7 @@ try {
 
 		$name = $rec['name'];
 		$price = $rec['price'];
+		$kakaku[] = $price;
 		$suryo = $count[$i];
 		$shokei = $price * $suryo;
 
@@ -65,6 +66,36 @@ try {
 		$honbun .= $suryo . '個　=';
 		$honbun .= $shokei . "円\n";
 	}
+
+	$sql = 'insert into order_tbl(code_member, name, email, postal1, postal2, address, tel) values(?,?,?,?,?,?,?)';
+	$stmt = $dbh->prepare($sql);
+	$data = [];
+	$data[] = 0;
+	$data[] = $onamae;
+	$data[] = $email;
+	$data[] = $postal1;
+	$data[] = $postal2;
+	$data[] = $address;
+	$data[] = $tel;
+	$stmt->execute($data);
+
+	$sql = 'select last_insert_id()';
+	$stmt = $dbh->prepare($sql);
+	$stmt->execute();
+	$rec = $stmt->fetch(PDO::FETCH_ASSOC);
+	$lastcode = $rec['LAST_INSERT_ID()'];
+
+	for ($i = 0; $i < $max; $i++) {
+		$sql = 'insert into order_product_tbl(code_sale, code_product, price, quantity) values(?,?,?,?)';
+		$stmt = $dbh->prepare($sql);
+		$data = [];
+		$data[] = $lastcode;
+		$data[] = $cart[$i];
+		$data[] = $kakaku[$i];
+		$data[] = $count[$i];
+		$stmt->execute($data);
+	}
+
 
 	$dbh = null;
 
@@ -89,12 +120,24 @@ try {
 	print nl2br($honbun);
 	**/
 
+	/*
 	$title = 'ご注文ありがとうございます。';
 	$header = 'From:info@';
 	$honbun = html_entity_decode($honbun, $ENT_QUOTES, 'UTF-8');
 	mb_language('Japanese');
 	mb_internal_encoding('UTF-8');
 	mb_send_mail($email, $title, $honbun, $header);
+
+	// miseあて
+	$title = '注文がありました。';
+	$header = 'From:info@';
+	$honbun = html_entity_decode($honbun, $ENT_QUOTES, 'UTF-8');
+	mb_language('Japanese');
+	mb_internal_encoding('UTF-8');
+	// miseあてemail
+	mb_send_mail('test@email.cocooom.jpp', $title, $honbun, $header);
+	*/
+
 
 
 } catch (Exception $e) {
