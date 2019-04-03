@@ -17,6 +17,7 @@ if (isset($_SESSION['login']) == false) {
 <body>
 	<a href="./kaiin/kaiin_list.php">会員管理</a><br>
 	<a href="./product/pro_list.php">商品管理</a>
+	<a href="./order/order_download.php">注文ダウンロード</a>
 	<a href="./kaiin_login/kaiin_logout.php">ログアウト</a>
 </body>
 </html>

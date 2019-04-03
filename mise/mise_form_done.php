@@ -67,6 +67,10 @@ try {
 		$honbun .= $shokei . "円\n";
 	}
 
+	$sql = 'lock tables order_tbl, order_product_tbl write';
+	$stmt = $dbh->prepare($sql);
+	$stmt->execute();
+
 	$sql = 'insert into order_tbl(code_member, name, email, postal1, postal2, address, tel) values(?,?,?,?,?,?,?)';
 	$stmt = $dbh->prepare($sql);
 	$data = [];
@@ -96,6 +100,9 @@ try {
 		$stmt->execute($data);
 	}
 
+	$sql = 'unlock tables';
+	$stmt = $dbh->prepare($sql);
+	$stmt->execute();
 
 	$dbh = null;
 
@@ -138,8 +145,6 @@ try {
 	mb_send_mail('test@email.cocooom.jpp', $title, $honbun, $header);
 	*/
 
-
-
 } catch (Exception $e) {
 	print $e;
 	print 'ただいま障害によりご迷惑をおかけしています。';
@@ -147,6 +152,7 @@ try {
 }
 
 ?>
+<a href="mise_list.php">商品画面へ</a>
 
 </body>
 </html>
