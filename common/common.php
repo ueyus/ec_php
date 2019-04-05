@@ -17,4 +17,23 @@
 		print '</select>';
 	}
 
+	function pull_month() {
+		print '<select name="month">';
+		for ($i = 1; $i <= 12; $i++) {
+			$val = sprintf('%02s', $i);
+			print '<option value="' . $i . '">' . $i . '</option>';
+		}
+		print '</select>';
+	}
+
+	function pull_day() {
+		$max = 31;
+		print '<select name="day">';
+		for ($i = 1; $i <= $max; $i++) {
+			$val = sprintf('%02s', $i);
+			print '<option value="' . $i . '">' . $i . '</option>';
+		}
+		print '</select>';	
+	}
+
 ?>

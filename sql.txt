@@ -31,6 +31,11 @@ create table order_tbl(
 	tel varchar(13) not null
 );
 
+#サンプルデータ
+insert into order_tbl(code_member, name, email, postal1, postal2, address, tel) values(1, 'first order', 'testtesttes@aa.cc.jj.asde', '111', '1111', 'tokyo', '00-1111-2222');
+insert into order_tbl(code_member, name, email, postal1, postal2, address, tel) values(2, 'third order', 'testtesttes3@aa.cc.jj.asde', '333', '3333', 'oosaka', '00-1111-4444');
+insert into order_tbl(code_member, name, email, postal1, postal2, address, tel) values(1, 'second order', 'testtesttes2@aa.cc.jj.asde', '222', '2222', 'shizuoka', '00-1111-3333');
+
 create table order_product_tbl(
 	code int(8) primary key auto_increment,
 	code_sale int not null,
@@ -39,3 +44,7 @@ create table order_product_tbl(
 	quantity int 
 );
 
+#サンプルデータ
+insert into order_product_tbl(code_sale, code_product, price, quantity) values(1, 1, 1000, 2);
+insert into order_product_tbl(code_sale, code_product, price, quantity) values(1, 2, 10000, 2);
+insert into order_product_tbl(code_sale, code_product, price, quantity) values(2, 1, 500, 1);
