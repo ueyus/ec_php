@@ -87,3 +87,11 @@ var_dump($_SESSION);
 	<a href="./clear_cart.php">カートを空にする</a>
 	<a href="./mise_form.html">ご購入手続きへ進む</a>
 
+<?php
+	if (isset($_SESSION['member_login']) == true) {
+		print '<a href="mise_easy_check.php">会員簡単注文へ進む</a><br>';
+	}
+
+
+?>
+

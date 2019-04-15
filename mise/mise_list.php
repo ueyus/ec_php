@@ -40,4 +40,7 @@ if (isset($_SESSION['member_login']) == false) {
 
 	print '<br>';
 	print '<a href="mise_cartlook.php">カートを見る</a><br>';
+	print '<a href="clear_cart.php">カートを空にする</a><br>';
+	print '<a href="mise_form.html">購入手続き</a><br>';
+	print '<a href="member_login.html">メンバーログイン</a><br>';
 ?>

@@ -1,6 +1,11 @@
 <?php
 	session_start();
 	session_regenerate_id(true);
+	if (isset($_SESSION['member_login']) == false) {
+		print 'ログインされていません';
+		print '<a href="mise_list.php">商品一覧へ</a>';
+		exit();
+	}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -22,10 +27,6 @@ try {
 	$postal2 = $post['postal2'];
 	$address = $post['address'];
 	$tel = $post['tel'];
-	$chumon = $post['chumon'];
-	$pass = $post['pass'];
-	$danjo = $post['danjo'];
-	$birth = $post['birth'];
 
 
 	print $onamae . '様<br>';
@@ -76,29 +77,7 @@ var_dump($post);
 	$stmt = $dbh->prepare($sql);
 	$stmt->execute();
 
-	$last_member = 0;
-	if ($chumon == 'chumontouroku') {
-		var_dump('chumon');
-		$sql = 'insert into order_member(password, name, email, postal1, postal2, address, tel, danjo, born) values(?,?,?,?,?,?,?,?,?)';
-		$stmt = $dbh->prepare($sql);
-		$data = [];
-		$data[] = md5($pass);
-		$data[] = $onamae;
-		$data[] = $email;
-		$data[] = $postal1;
-		$data[] = $postal2;
-		$data[] = $address;
-		$data[] = $tel;
-		$data[] = $danjo == 'man' ? 1 : 2;
-		$data[] = $birth;			
-		$stmt->execute($data);
-
-		$sql = 'select last_insert_id()';
-		$stmt = $dbh->prepare($sql);
-		$stmt->execute();
-		$rec = $stmt->fetch(PDO::FETCH_ASSOC);
-		$last_member = $rec['LAST_INSERT_ID()'];
-	}
+	$last_member = $_SESSION['member_code'];
 
 	$sql = 'insert into order_tbl(code_member, name, email, postal1, postal2, address, tel) values(?,?,?,?,?,?,?)';
 	$stmt = $dbh->prepare($sql);
@@ -135,12 +114,6 @@ var_dump($post);
 
 	$dbh = null;
 
-	if ($chumon == 'chumontouroku') {
-		print '会員登録が完了しました。<br>';
-		print '次回からメールアドレスとパスワードでログインください<br>';
-		print 'ご注文が簡単にできるようなります<br>';
-		print '<br>';
-	}
 
 	$honbun .= "送料は無料です。\n";
 	$honbun .= "-------------------\n";
@@ -156,13 +129,6 @@ var_dump($post);
 	$honbun .= "電話：　22222222\n";
 	$honbun .= "FAX：　33333333333\n";
 	$honbun .= "\n";
-
-	if ($chumon == 'chumontouroku') {
-		$honbun .= '会員登録が完了しました。<br>';
-		$honbun .= '次回からメールアドレスとパスワードでログインください<br>';
-		$honbun .= 'ご注文が簡単にできるようなります<br>';
-		$honbun .= '<br>';
-	}
 
 	$honbun .= "◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇\n";
 
