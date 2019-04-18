@@ -1,8 +1,8 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ja">
 <head>
 	<meta charset="UTF-8">
-	<title>	</title>
+	<title>商品編集入力</title>
 </head>
 <body>
 <?php
@@ -41,7 +41,7 @@
 				名前：<br>
 				<input type="text" name="name" value="<?php print $pro_name; ?>"><br>
 				価格：<br>	
-				<input type="text" name="price" value="<?php print $pro_code; ?>"><br>
+				<input type="text" name="price" value="<?php print $pro_price; ?>"><br>
 				<input type="button" onclick="history.back()" value="戻る">
 				<input type="submit" value="送信">
 		</form>

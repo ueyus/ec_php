@@ -1,8 +1,8 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ja">
 <head>
 	<meta charset="UTF-8">
-	<title>	</title>
+	<title>会員修正完了</title>
 </head>
 <body>
 
@@ -12,11 +12,9 @@
 			$kaiin_name = $_POST['name'];
 			$kaiin_pass = $_POST['password'];
 			
-			/*
-				$kaiin_code = htmlspecialchars($kaiin_code);
-				$kaiin_name = htmlspecialchars($kaiin_name);
-				$kaiin_pass = htmlspecialchars($kaiin_pass);
-			*/
+			$kaiin_code = htmlspecialchars($kaiin_code);
+			$kaiin_name = htmlspecialchars($kaiin_name);
+			$kaiin_pass = htmlspecialchars($kaiin_pass);
 
 			$dsn = 'mysql:dbname=ec_test_php;host=localhost;';
 			$user = 'an';
@@ -29,8 +27,7 @@
 			$data[] = $kaiin_name;
 			$data[] = $kaiin_pass;
 			$data[] = $kaiin_code;
-var_dump($data);
-var_dump($sql);
+
 			$stmt->execute($data);
 
 			$db = null;

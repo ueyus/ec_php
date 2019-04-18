@@ -12,7 +12,10 @@ $kaiin_name = $_POST['name'];
 $kaiin_pass1 = $_POST['password1'];
 $kaiin_pass2 = $_POST['password2'];
 
+// kaiin_codeのサニタイジングがない
 $kaiin_name = htmlspecialchars($kaiin_name);
+$kaiin_pass1 = htmlspecialchars($kaiin_pass1);
+$kaiin_pass2 = htmlspecialchars($kaiin_pass2);
 //
 
 $ok_flag = true;

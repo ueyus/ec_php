@@ -8,14 +8,10 @@
 
 <?php
 		try {
+
 			$kaiin_code = $_POST['code'];
-			$kaiin_name = $_POST['name'];
-			
-			/*
-				$kaiin_code = htmlspecialchars($kaiin_code);
-				$kaiin_name = htmlspecialchars($kaiin_name);
-				$kaiin_pass = htmlspecialchars($kaiin_pass);
-			*/
+			// ここでサニタイジング
+			// $kaiin_code = htmlspecialchars($kaiin_code);
 
 			$dsn = 'mysql:dbname=ec_test_php;host=localhost;';
 			$user = 'an';
@@ -31,12 +27,11 @@
 
 			$db = null;
 
-			print $kaiin_name . 'を削除しました <br>';
+			print $kaiin_code . 'を削除しました <br>';
 
 		} catch (Exception $e) {
 			print 'system error!!';
 			exit();
-
 		}
 ?>
 </body>

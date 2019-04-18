@@ -9,7 +9,7 @@
 		try {
 
 			$kaiin_code = $_GET['kaiin_code'];
-			//　ここでサニタイジング
+			//　ここでサニタイジング必要(A)
 			// $kaiin_code = htmlspecialchars($kaiin_code);
 
 			$dsn = 'mysql:dbname=ec_test_php;host=localhost;';
@@ -35,10 +35,12 @@
 		} 
 ?>
 		スタッフ削除<br>
+		<!-- (A) -->
 		スタッフコード：<br><?php print $kaiin_code; ?><br>
 		スタッフ名：<br><?php print $kaiin_name; ?><br>
 		このスタッフを削除してもよろしいですか？<br>
 		<form action="kaiin_delete_done.php" method="post">
+			<!-- (A) -->
 			<input type="hidden" name="code" value="<?php print $kaiin_code; ?>">
 			<input type="hidden" name="name" value="<?php print $kaiin_name; ?>">
 			<input type="button" onclick="history.back()" value="戻る">
