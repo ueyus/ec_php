@@ -4,10 +4,9 @@ try {
 	$kaiin_code = $_POST['code'];
 	$kaiin_pass = $_POST['password'];
 
-	#$kaiin_code = htmlspecialchars($kaiin_code);
-	#$kaiin_pass = htmlspecialchars($kaiin_pass);
-var_dump($kaiin_pass);
-var_dump('             ');
+	$kaiin_code = htmlspecialchars($kaiin_code);
+	$kaiin_pass = htmlspecialchars($kaiin_pass);
+
 	$kaiin_pass = md5($kaiin_pass);
 
 	$dsn = 'mysql:dbname=ec_test_php;host=localhost;';
@@ -20,8 +19,7 @@ var_dump('             ');
 	$stmt = $db->prepare($sql);
 	$data = [$kaiin_code, $kaiin_pass];
 	$stmt->execute($data);
-var_dump($data);
-var_dump($stmt->debugDumpParams());
+
 	$db = null;
 
 	$rec = $stmt->fetch(PDO::FETCH_ASSOC);
