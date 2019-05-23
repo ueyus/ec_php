@@ -5,24 +5,32 @@ if (isset($_SESSION['login']) == false) {
 	print 'ログインされていません。';
 	print '<a href="./kaiin_login/kaiin_login.html">ログイン画面へ</a>';
 	exit();
-} else {
-	print $_SESSION['kaiin_name'];
-	print 'さんログイン中<br>';
-	print '<br>';
 }
 
 ?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="jp">
 <head>
 	<meta charset="UTF-8">
-	<title>Document</title>
+	<title>kaiin_login</title>
+	<link rel="stylesheet" href="./css/login.css">
 </head>
 <body>
-	<a href="./kaiin/kaiin_list.php">会員管理</a><br>
-	<a href="./product/pro_list.php">商品管理</a>
-	<a href="./order/order_download.php">注文ダウンロード</a>
-	<a href="./kaiin_login/kaiin_logout.php">ログアウト</a>
+	<header>
+		<div class="sub">
+			<?php
+				print $_SESSION['kaiin_name'];
+				print 'さんログイン中<br>';
+			?>
+		</div>
+	</header>
+	
+	<div class="links clearfix">
+		<a href="./kaiin/kaiin_list.php" class="btn">会員管理</a>
+		<a href="./product/pro_list.php" class="btn">商品管理</a>
+		<a href="./order/order_download.php" class="btn">注文ダウンロード</a>
+		<a href="./kaiin_login/kaiin_logout.php" class="btn">ログアウト</a>
+	</div>
 </body>
 </html>
 
